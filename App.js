@@ -3,12 +3,13 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import Click from "./src/Click";
+import ProductList from "./src/product/ProductList";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Click />
+      <Text>Hello!</Text>
+      <ProductList />
       <StatusBar style="auto" />
     </View>
   );
