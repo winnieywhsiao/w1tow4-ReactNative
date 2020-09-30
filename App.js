@@ -8,7 +8,7 @@ import ProductList from "./src/product/ProductList";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello!</Text>
+      <Text style={styles.text}>Hello!</Text>
       <ProductList />
       <StatusBar style="auto" />
     </View>
