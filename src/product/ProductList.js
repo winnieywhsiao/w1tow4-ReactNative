@@ -13,7 +13,6 @@ import {
   Alert,
   Modal,
   TouchableHighlight,
-  Button,
 } from "react-native";
 
 import { Icon, Fab } from "native-base";
@@ -86,7 +85,7 @@ export default function ProductList() {
             <ProductAdd update={update} />
 
             <TouchableHighlight
-              style={styles.openButton}
+              style={styles.hideButton}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
