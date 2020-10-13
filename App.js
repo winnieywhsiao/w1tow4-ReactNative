@@ -8,8 +8,9 @@ import ProductList from "./src/product/ProductList";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello!</Text>
+      <Text style={styles.hello}>Hello!</Text>
       <ProductList />
+      {/* <Click count={10} /> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -21,5 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  hello: {
+    marginTop: 100,
   },
 });

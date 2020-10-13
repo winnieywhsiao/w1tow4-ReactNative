@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles";
+import ProductAdd from "./ProductAdd";
 
 import {
   FlatList,
@@ -9,8 +10,15 @@ import {
   StatusBar,
   StyleSheet,
   TouchableOpacity,
+  Alert,
+  Modal,
+  TouchableHighlight,
+  Button,
 } from "react-native";
 
+import { Icon, Fab } from "native-base";
+
+/*
 const data = [
   {
     name: "iPhone 7",
@@ -34,9 +42,15 @@ const data = [
     safetyStock: 100,
   },
 ];
+*/
 
 export default function ProductList() {
   const [selected, setSelected] = useState(null); //必須要放 function 裡面
+  const [products, setProducts] = useState([
+    { desc: "iPad", price: 20000 },
+    { desc: "iPhone X", price: 30000 },
+  ]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const renderItem = ({ item, index }) => {
     const backgroundColor = index === selected ? "#f9c2ff" : "#00ffff";
@@ -46,20 +60,46 @@ export default function ProductList() {
         onPress={() => setSelected(index)}
         style={[styles.item, { backgroundColor }]}
       >
-        <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.content}>{"$" + item.price}</Text>
+        <Text style={styles.title}>{item.desc}</Text>
+        <Text style={styles.content}>{item.price}</Text>
         <Text style={styles.content}>/{index}</Text>
       </TouchableOpacity>
     );
   };
 
+  function update(newProduct) {
+    // setState 可以給 value 或 callback function
+    setProducts((oldProducts) => [...oldProducts, newProduct]); //此為一個callback function
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
+        data={products}
         renderItem={renderItem}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.desc}
       ></FlatList>
+
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <ProductAdd update={update} />
+
+            <TouchableHighlight
+              style={styles.openButton}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
+
+      <Fab onPress={() => setModalVisible(true)}>
+        <Icon ios="ios-add" android="md-add" />
+      </Fab>
     </SafeAreaView>
   );
 }

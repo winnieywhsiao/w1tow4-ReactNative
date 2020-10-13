@@ -7,15 +7,27 @@ export default function Click(props) {
 
   function showCount() {
     Alert.alert("count:" + count);
-    props.update(count);
+    // props.update(count);
   }
 
   useEffect(showCount);
 
   return <Button title={countString} onPress={() => setCount(count + 1)} />;
 
-  // // let count = 0;
+  // // (2)
+  // const [count, setCount] = useState(props.count);
+  // let countString = "count:" + count;
 
+  // function showCount() {
+  //   Alert.alert("count:" + count);
+  // }
+
+  // useEffect(showCount); // 元件被 render 之後執行
+
+  // return <Button title={countString} onPress={() => setCount(count + 1)} />;
+
+  // // (1)
+  // // let count = 0;
   // const [count, setCount] = useState(0);
   // let countString = "count: " + count; //React 的 UI 不會跟著變動，如果要變動可用 State 監控變數
 
