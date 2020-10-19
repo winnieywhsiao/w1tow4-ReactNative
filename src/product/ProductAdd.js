@@ -34,9 +34,7 @@ export default function ProductAdd(props) {
 
       <TouchableHighlight
         style={styles.addButton}
-        onPress={() => {
-          update;
-        }}
+        onPress={update}
       >
         <Text style={styles.textStyle}>新增</Text>
       </TouchableHighlight>
